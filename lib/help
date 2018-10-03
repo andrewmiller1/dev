@@ -1,0 +1,10 @@
+Usage: dev [OPTION...]
+Developer Utility manages and validates development files.
+
+Examples:
+  dev test                     # Run the test.
+  dev create shellscript       # Create a new shellscript program.
+
+ Options:
+
+  -?, --help                 give this help list

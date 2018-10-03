@@ -1,0 +1,52 @@
+#!/bin/sh
+# shellcheck disable=1090,2154
+
+: <<'COMMENT'
+Developer Utility manages and validates development files.
+Copyright (C) 2018  Andrew Miller
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+COMMENT
+
+
+setEnvironment () {
+  . "${dir_dev}/include/devpathsrc"
+  export PATH="${PATH}:${dir_devlibexec}"
+}
+
+
+includeDependencies () {
+  . "${dir_devinclude}/shellscriptdevrc"
+}
+
+
+setEnvironment
+includeDependencies
+
+if [ "${1}" = "-?" ]; then
+  cat "${dir_devlib}/help"
+fi
+if [ "${1}" = "--help" ]; then
+  cat "${dir_devlib}/help"
+fi
+if [ "${1}" = "test" ]; then
+  if [ "${#}" = "1" ]; then
+    testScript
+  fi
+fi
+if [ "${1}" = "create" ]; then
+  if [ "${2}" = "shellscript" ]; then
+    createScript
+  fi
+fi
